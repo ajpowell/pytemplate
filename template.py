@@ -13,6 +13,30 @@ Short version:
     python3 -m venv ./
     source ./bin/activate on Mac/Linux or .\Scripts\Activate.ps1 on Windows
 
+Requirements.txt
+================
+# Full details here: https://datagy.io/python-requirements-txt/
+# Create requirements.txt by running:
+pip3 freeze > requirements.txt
+
+# Install required modules using:
+pip3 install -r requirements.txt
+
+# List any outdated modules
+pip3 list --outdated
+
+# Upgrade specific modules
+pip3 install -U package_name
+
+Create deployable wheel
+=======================
+# Full details here: https://pip.pypa.io/en/stable/cli/pip_wheel/
+# Build wheel package
+pip3 wheel . -w wheels
+
+# Deploy a wheel file
+pip3 install package-1.0-cp27-none-macosx_10_7_intel.whl
+
 Arguments
 =========
 Simple approach - accepts:
@@ -26,8 +50,6 @@ Defaults to INFO level - use -d to include DEBUG
 Configuration
 =============
 Simple json file (config.json)
-
-
 
 '''
 
