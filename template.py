@@ -10,8 +10,8 @@ Python venv
 ===========
 Full details here: https://docs.python.org/3/library/venv.html
 Short version:
-    python3  -m venv ./
-    source ./bin/activate
+    python3 -m venv ./
+    source ./bin/activate on Mac/Linux or .\Scripts\Activate.ps1 on Windows
 
 Arguments
 =========
@@ -34,6 +34,7 @@ Simple json file (config.json)
 #     Ver    Author          Date       Comments
 #     ===    =============== ========== =======================================
 ver = 0.1  # ajpowell        2022-06-14 Initial code
+ver = 0.2  # ajpowell        2022-06-22 Minor corrections
 
 config_filename = 'config.json'
 
@@ -81,7 +82,7 @@ if __name__ == "__main__":
         # If -d then enable debug mode
         if sys.argv[1].lower() == '-d':
             logging.getLogger().setLevel(logging.DEBUG)
-            logging.debug('Debug mode enabled.')
+            logging.debug('****** Debug mode enabled ******')
         # If -q then enable quiet mode
         if sys.argv[1].lower() == '-q':
             logging.getLogger().setLevel(logging.WARNING)
