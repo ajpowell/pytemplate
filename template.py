@@ -96,7 +96,7 @@ def main():
 
 
 if __name__ == "__main__":
-    logging.info('{} v.{}'.format(os.path.basename(__file__), ver))
+    logging.info('{} v{}'.format(os.path.basename(__file__), ver))
     if len(sys.argv) > 1:
         # Just exit if -v supplied on command line
         if sys.argv[1].lower() == '-v':
