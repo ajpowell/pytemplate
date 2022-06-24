@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[project]
+name = "pytemplate"
+version = "0.1"
+description = "pytemplate package"
+
+[project.scripts]
+pytemplate_main = "pytemplate:main"

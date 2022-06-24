@@ -31,18 +31,21 @@ pip3 install -U package_name
 Create deployable wheel
 =======================
 # Full details here: https://pip.pypa.io/en/stable/cli/pip_wheel/
+
+# Install setup tools
+python -m pip install -U wheel setuptools
+
 # Build wheel package
-pip3 wheel . -w wheels
+pip wheel . -w wheels
 
 # Deploy a wheel file
-pip3 install package-1.0-cp27-none-macosx_10_7_intel.whl
+pip install package-1.0-cp27-none-macosx_10_7_intel.whl
 
 Arguments
 =========
 Simple approach - accepts:
     -v - reports version only
     -d - runs in debug mode for logging
-
 Logging
 =======
 Defaults to INFO level - use -d to include DEBUG
