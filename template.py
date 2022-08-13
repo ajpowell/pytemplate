@@ -10,8 +10,8 @@ Python venv
 ===========
 Full details here: https://docs.python.org/3/library/venv.html
 Short version:
-    python3 -m venv ./
-    source ./bin/activate on Mac/Linux or .\Scripts\Activate.ps1 on Windows
+    python3 -m venv ./venv
+    source ./venv/bin/activate on Mac/Linux or .\venv\Scripts\Activate.ps1 on Windows
 
 Requirements.txt
 ================
