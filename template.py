@@ -92,13 +92,19 @@ def main():
     logging.info('Starting...')
 
     # Read environment variables
-    env_shell = os.getenv('SHELL')
-    logging.info('Shell: {}'.format(env_shell))
+    try:
+        env_shell = os.getenv('SHELL')
+        logging.info('Shell: {}'.format(env_shell))
+    
+    except Exception as ex:
+        # Handle the exception
+        logging.error('An error ocurred getting the environment variable')
 
-    logging.debug('Debug output...')
-    logging.info('Nearly done...')
-    logging.info('Done.')
-    print('')
+    else:
+        logging.debug('Debug output...')
+        logging.info('Nearly done...')
+        logging.info('Done.')
+        print('')
 
 
 if __name__ == "__main__":
