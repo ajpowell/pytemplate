@@ -95,10 +95,11 @@ def main():
     try:
         env_shell = os.getenv('SHELL')
         logging.info('Shell: {}'.format(env_shell))
-    
+
     except Exception as ex:
         # Handle the exception
         logging.error('An error ocurred getting the environment variable')
+        logging.error(ex)
 
     else:
         logging.debug('Debug output...')
