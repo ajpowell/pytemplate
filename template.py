@@ -97,6 +97,7 @@ def main():
         logging.info('Shell: {}'.format(env_shell))
 
     except Exception as ex:
+        # except Exception:
         # Handle the exception
         logging.error('An error ocurred getting the environment variable')
         logging.error(ex)
@@ -106,6 +107,20 @@ def main():
         logging.info('Nearly done...')
         logging.info('Done.')
         print('')
+        sys.exit(1)
+
+    logging.debug('Debug output...')
+    logging.info('Nearly done...')
+
+    # save config
+    # config['last_number'] = last_number
+
+    # write config back to the file
+    with open(config_filename, 'w') as f:
+        json.dump(config, f)
+
+    logging.info('Done.')
+    print('')
 
 
 if __name__ == "__main__":
