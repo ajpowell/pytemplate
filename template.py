@@ -2,6 +2,7 @@ import logging
 import sys
 import os
 import json
+from dotenv import load_dotenv
 
 '''
 template.py
@@ -66,14 +67,16 @@ ver = 0.2  # ajpowell        2022-06-22 Minor corrections
 
 config_filename = 'config.json'
 
-# Initialise logging module
-logging.root.handlers = []
-logging.basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s',
-    # datefmt='%Y-%m-%d %H:%M:%S',
-    level=logging.INFO
-    # level=logging.DEBUG
-    )
+
+def configure_logging():
+    # Initialise logging module
+    logging.root.handlers = []
+    logging.basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        # datefmt='%Y-%m-%d %H:%M:%S',
+        level=logging.INFO
+        # level=logging.DEBUG
+        )
 
 
 def main():
@@ -87,11 +90,18 @@ def main():
         logging.error('ERROR: There was a problem loading the config file [{}]'.format(config_filename))  # noqa: E501
         sys.exit(-1)
 
-    # load_balancer_url = config['load_balancer_url']
+    test_data = config['test']
+
+    logging.info('Data (from config.json): {}'.format(test_data))
 
     logging.info('Starting...')
 
-    # Read environment variables
+    # Read envs that came from .env
+    env = os.environ.get("ENV")
+
+    logging.info('Environment (from .env): {}'.format(env))
+
+    # Read environment variables from OS
     try:
         env_shell = os.getenv('SHELL')
         logging.info('Shell: {}'.format(env_shell))
@@ -124,6 +134,12 @@ def main():
 
 
 if __name__ == "__main__":
+
+    configure_logging()
+
+    # Load the environment variables from .env
+    load_dotenv()
+
     logging.info('{} v{}'.format(os.path.basename(__file__), ver))
     if len(sys.argv) > 1:
         # Just exit if -v supplied on command line
