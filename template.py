@@ -64,6 +64,7 @@ Simple json file (config.json)
 #     ===    =============== ========== =======================================
 ver = 0.1  # ajpowell        2022-06-14 Initial code
 ver = 0.2  # ajpowell        2022-06-22 Minor corrections
+ver = 0.3  # ajpowell        2023-02-27 More minor updates
 
 config_filename = 'config.json'
 
