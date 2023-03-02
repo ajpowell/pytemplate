@@ -187,6 +187,7 @@ if __name__ == "__main__":
     if args.debug & args.quiet:
         print('Invalid combination of options.')
         parser.print_help()
+        sys.exit()
 
     if args.debug:
         logging.getLogger().setLevel(logging.DEBUG)
