@@ -2,7 +2,6 @@ import logging
 import sys
 import os
 import json
-import argparse
 
 '''
 template.py
@@ -72,15 +71,9 @@ Simple json file (config.json)
 #     ===    =============== ========== =======================================
 ver = 0.1  # ajpowell        2022-06-14 Initial code
 ver = 0.2  # ajpowell        2022-06-22 Minor corrections
-ver = 0.3  # ajpowell        2023-03-02 Using argparse
+ver = 0.3  # ajpowell        2023-02-27 More minor updates
 
 config_filename = 'config.json'
-
-parser = argparse.ArgumentParser(
-        prog=os.path.basename(__file__),
-        description='Project description...',
-        epilog='Epilog text...'
-        )
 
 
 def configure_logging():
@@ -113,11 +106,18 @@ def main():
         logging.error('ERROR: There was a problem loading the config file [{}]'.format(config_filename))  # noqa: E501
         sys.exit(-1)
 
-    # load_balancer_url = config['load_balancer_url']
+    test_data = config['test']
+
+    logging.info('Data (from config.json): {}'.format(test_data))
 
     logging.info('Starting...')
 
-    # Read environment variables
+    # Read envs that came from .env
+    env = os.environ.get("ENV")
+
+    logging.info('Environment (from .env): {}'.format(env))
+
+    # Read environment variables from OS
     try:
         env_shell = os.getenv('SHELL')
         logging.info('Shell: {}'.format(env_shell))
@@ -151,6 +151,12 @@ def main():
 
 if __name__ == "__main__":
     configure_logging()
+
+
+    configure_logging()
+
+    # Load the environment variables from .env
+    load_dotenv()
 
     logging.info('{} v{}'.format(os.path.basename(__file__), ver))
 
