@@ -2,6 +2,7 @@ import logging
 import sys
 import os
 import json
+import argparse
 
 '''
 template.py
@@ -49,6 +50,14 @@ Arguments
 Simple approach - accepts:
     -v - reports version only
     -d - runs in debug mode for logging
+    -q - runs in quiet mode
+    -h - show help
+
+Advanced arguments:
+https://docs.python.org/3/library/argparse.html
+
+
+
 Logging
 =======
 Defaults to INFO level - use -d to include DEBUG
@@ -63,17 +72,34 @@ Simple json file (config.json)
 #     ===    =============== ========== =======================================
 ver = 0.1  # ajpowell        2022-06-14 Initial code
 ver = 0.2  # ajpowell        2022-06-22 Minor corrections
+ver = 0.3  # ajpowell        2023-03-02 Using argparse
 
 config_filename = 'config.json'
 
-# Initialise logging module
-logging.root.handlers = []
-logging.basicConfig(
-    format='%(asctime)s %(levelname)-8s %(message)s',
-    # datefmt='%Y-%m-%d %H:%M:%S',
-    level=logging.INFO
-    # level=logging.DEBUG
-    )
+parser = argparse.ArgumentParser(
+        prog=os.path.basename(__file__),
+        description='Project description...',
+        epilog='Epilog text...'
+        )
+
+
+def configure_logging():
+    # Initialise logging module
+    logging.root.handlers = []
+    logging.basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        # datefmt='%Y-%m-%d %H:%M:%S',
+        level=logging.INFO
+        # level=logging.DEBUG
+        )
+
+
+def parse_args():
+    parser.add_argument('-v', '--version', action='store_true', help='Show version')
+    parser.add_argument('-d', '--debug', action='store_true', help='Debug mode')
+    parser.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
+
+    return parser.parse_args()
 
 
 def main():
@@ -124,18 +150,38 @@ def main():
 
 
 if __name__ == "__main__":
+    configure_logging()
+
     logging.info('{} v{}'.format(os.path.basename(__file__), ver))
-    if len(sys.argv) > 1:
-        # Just exit if -v supplied on command line
-        if sys.argv[1].lower() == '-v':
-            sys.exit()
-        # If -d then enable debug mode
-        if sys.argv[1].lower() == '-d':
-            logging.getLogger().setLevel(logging.DEBUG)
-            logging.debug('****** Debug mode enabled ******')
-        # If -q then enable quiet mode
-        if sys.argv[1].lower() == '-q':
-            logging.getLogger().setLevel(logging.WARNING)
+
+    # Simple argument handling
+    # if len(sys.argv) > 1:
+    #    # Just exit if -v supplied on command line
+    #    if sys.argv[1].lower() == '-v':
+    #    # If -d then enable debug mode
+    #        sys.exit()
+    #        logging.getLogger().setLevel(logging.DEBUG)
+    #        logging.debug('****** Debug mode enabled ******')
+    #    # If -q then enable quiet mode
+    #    if sys.argv[1].lower() == '-d':
+    #    if sys.argv[1].lower() == '-q':
+    #        logging.getLogger().setLevel(logging.WARNING)
+
+    # Advanced argument handling
+    args = parse_args()
+    if args.version:
+        sys.exit()
+
+    if args.debug & args.quiet:
+        print('Invalid combination of options.')
+        parser.print_help()
+
+    if args.debug:
+        logging.getLogger().setLevel(logging.DEBUG)
+        logging.debug('****** Debug mode enabled ******')
+
+    if args.quiet:
+        logging.getLogger().setLevel(logging.WARNING)
 
     # Jump to main code
     main()
