@@ -2,6 +2,8 @@ import logging
 import sys
 import os
 import json
+import argparse
+from dotenv import load_dotenv
 
 '''
 template.py
@@ -72,8 +74,15 @@ Simple json file (config.json)
 ver = 0.1  # ajpowell        2022-06-14 Initial code
 ver = 0.2  # ajpowell        2022-06-22 Minor corrections
 ver = 0.3  # ajpowell        2023-02-27 More minor updates
+ver = 0.4  # ajpowell        2023-03-02 Using argparse
 
 config_filename = 'config.json'
+
+parser = argparse.ArgumentParser(
+        prog=os.path.basename(__file__),
+        description='Project description...',
+        epilog='Epilog text...'
+        )
 
 
 def configure_logging():
@@ -150,9 +159,6 @@ def main():
 
 
 if __name__ == "__main__":
-    configure_logging()
-
-
     configure_logging()
 
     # Load the environment variables from .env
