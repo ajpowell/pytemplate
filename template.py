@@ -18,6 +18,9 @@ Activate venv with:
     Mac/Linux   source ./venv/bin/activate
     Windows     .\\venv\\Scripts\\Activate.ps1
 
+Update pip, if required:
+    ./venv/bin/python3.9 -m pip install --upgrade pip
+
 Requirements.txt
 ================
 # Full details here: https://datagy.io/python-requirements-txt/
