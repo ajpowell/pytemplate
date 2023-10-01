@@ -100,9 +100,12 @@ def configure_logging():
 
 
 def parse_args():
-    parser.add_argument('-v', '--version', action='store_true', help='Show version')
-    parser.add_argument('-d', '--debug', action='store_true', help='Debug mode')
-    parser.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
+    parser.add_argument('-v', '--version',
+                        action='store_true', help='Show version')
+    parser.add_argument('-d', '--debug',
+                        action='store_true', help='Debug mode')
+    parser.add_argument('-q', '--quiet',
+                        action='store_true', help='Quiet mode')
 
     return parser.parse_args()
 
