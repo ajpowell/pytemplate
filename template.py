@@ -12,14 +12,14 @@ Python venv
 ===========
 Full details here: https://docs.python.org/3/library/venv.html
 Short version:
-    python3 -m venv ./venv
+    python -m venv ./venv
 
 Activate venv with:
     Mac/Linux   source ./venv/bin/activate
     Windows     .\\venv\\Scripts\\Activate.ps1
 
 Update pip, if required:
-    ./venv/bin/python3.9 -m pip install --upgrade pip
+    ./venv/bin/python -m pip install --upgrade pip
 
 Requirements.txt
 ================
